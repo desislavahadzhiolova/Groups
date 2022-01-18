@@ -8,6 +8,8 @@ import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.ActionCodeEmailInfo
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import timber.log.Timber
 
 class SignUp : AppCompatActivity() {
@@ -17,6 +19,7 @@ class SignUp : AppCompatActivity() {
     private lateinit var addPassword : EditText
     private lateinit var buttonSignUp: Button
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var mDbRef: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,26 +34,36 @@ class SignUp : AppCompatActivity() {
         buttonSignUp = findViewById(R.id.button_Signup)
 
         buttonSignUp.setOnClickListener(){
+
+            val name = addName.text.toString()
             val email = addEmail.text.toString()
             val password = addPassword.text.toString()
 
-            signUp(email, password)
+            signUp(name,email, password)
 
         }
 
     }
 
-    private fun signUp(email: String, password: String){
+    private fun signUp(name: String, email: String, password: String){
         mAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     //return to home
+
+                    addUserToDatabase(name, email, mAuth.currentUser?.uid!!)
                     val intent = Intent(this@SignUp, MainActivity:: class.java)
+                    finish()
                     startActivity(intent)
                 } else {
                     Toast.makeText(this@SignUp, "Error while logging in", Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+
+    private fun addUserToDatabase(name: String, email: String, uid: String){
+        mDbRef = FirebaseDatabase.getInstance().getReference()
+        mDbRef.child("user").child(uid).setValue(User(name,email,uid))
     }
 
 }
