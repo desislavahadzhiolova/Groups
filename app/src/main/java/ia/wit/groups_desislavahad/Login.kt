@@ -3,7 +3,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import timber.log.Timber
 
 
@@ -13,6 +15,7 @@ class Login : AppCompatActivity() {
     private lateinit var addPassword : EditText
     private lateinit var buttonLogin: Button
     private lateinit var buttonSignUp: Button
+    private lateinit var mAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +23,7 @@ class Login : AppCompatActivity() {
         Timber.plant(Timber.DebugTree())
         Timber.i("Login Activity started.")
 
+        mAuth= FirebaseAuth.getInstance()
 
         addEmail = findViewById(R.id.add_email)
         addPassword = findViewById(R.id.add_password)
@@ -31,5 +35,28 @@ class Login : AppCompatActivity() {
             startActivity(intent)
         }
 
+        buttonLogin.setOnClickListener{
+            val email = addEmail.text.toString()
+            val password = addPassword.text.toString()
+
+            login(email,password)
+        }
+
+
     }
+
+    private fun login(email: String, password: String){
+        mAuth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val intent = Intent(this@Login, MainActivity:: class.java)
+                    startActivity(intent)
+
+                } else {
+                   Toast.makeText(this@Login, "User does not exist", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
+
 }
