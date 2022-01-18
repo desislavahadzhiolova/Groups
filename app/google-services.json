@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "860025156891",
+    "project_id": "groups-d3ea7",
+    "storage_bucket": "groups-d3ea7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860025156891:android:3183310792a34f55124fbe",
+        "android_client_info": {
+          "package_name": "ia.wit.groups_desislavahad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860025156891-91ligj55otdre14teprr23078vnh6l0v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVOfivnNemfh13vXRoUysNX6nghxChftk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "860025156891-91ligj55otdre14teprr23078vnh6l0v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
