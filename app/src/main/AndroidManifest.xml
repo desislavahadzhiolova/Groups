@@ -22,7 +22,7 @@
             android:name=".SignUp"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Placemark_Activity"
             android:exported="false" />
     </application>
 

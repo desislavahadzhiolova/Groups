@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import timber.log.Timber
+import timber.log.Timber.i
 
 
 class Login : AppCompatActivity() {
@@ -21,7 +22,7 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         Timber.plant(Timber.DebugTree())
-        Timber.i("Login Activity started.")
+        i("Login Activity started.")
 
         supportActionBar?.hide()
 
@@ -51,7 +52,7 @@ class Login : AppCompatActivity() {
         mAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    val intent = Intent(this@Login, MainActivity:: class.java)
+                    val intent = Intent(this@Login, Placemark_Activity:: class.java)
                     finish()
                     startActivity(intent)
 

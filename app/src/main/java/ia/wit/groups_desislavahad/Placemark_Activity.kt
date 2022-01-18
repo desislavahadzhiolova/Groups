@@ -6,17 +6,20 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.google.firebase.auth.FirebaseAuth
+import timber.log.Timber
+import timber.log.Timber.i
 
-class MainActivity : AppCompatActivity() {
+
+class Placemark_Activity : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_placemark)
 
         mAuth = FirebaseAuth.getInstance()
+        Timber.plant(Timber.DebugTree())
+        i("Placemark activity started.")
 
     }
 
@@ -28,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.logout){
             mAuth.signOut()
-            val intent = Intent(this@MainActivity, Login:: class.java)
+            val intent = Intent(this@Placemark_Activity, Login:: class.java)
             finish()
             startActivity(intent)
             return true

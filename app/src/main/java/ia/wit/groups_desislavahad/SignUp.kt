@@ -6,11 +6,11 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.google.firebase.auth.ActionCodeEmailInfo
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import timber.log.Timber
+import timber.log.Timber.i
 
 class SignUp : AppCompatActivity() {
 
@@ -24,7 +24,7 @@ class SignUp : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Timber.plant(Timber.DebugTree())
-        Timber.i("SignUp Activity started.")
+        i("SignUp Activity started.")
         setContentView(R.layout.activity_sign_up)
 
         supportActionBar?.hide()
@@ -54,7 +54,7 @@ class SignUp : AppCompatActivity() {
                     //return to home
 
                     addUserToDatabase(name, email, mAuth.currentUser?.uid!!)
-                    val intent = Intent(this@SignUp, MainActivity:: class.java)
+                    val intent = Intent(this@SignUp, Placemark_Activity:: class.java)
                     finish()
                     startActivity(intent)
                 } else {
