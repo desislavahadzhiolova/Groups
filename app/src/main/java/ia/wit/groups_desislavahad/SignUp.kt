@@ -54,7 +54,7 @@ class SignUp : AppCompatActivity() {
                     //return to home
 
                     addUserToDatabase(name, email, mAuth.currentUser?.uid!!)
-                    val intent = Intent(this@SignUp, Placemark_Activity:: class.java)
+                    val intent = Intent(this@SignUp, PlacemarkActivity:: class.java)
                     finish()
                     startActivity(intent)
                 } else {
