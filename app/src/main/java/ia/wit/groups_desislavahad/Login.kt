@@ -23,6 +23,8 @@ class Login : AppCompatActivity() {
         Timber.plant(Timber.DebugTree())
         Timber.i("Login Activity started.")
 
+        supportActionBar?.hide()
+
         mAuth= FirebaseAuth.getInstance()
 
         addEmail = findViewById(R.id.add_email)

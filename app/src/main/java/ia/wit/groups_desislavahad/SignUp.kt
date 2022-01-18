@@ -27,6 +27,8 @@ class SignUp : AppCompatActivity() {
         Timber.i("SignUp Activity started.")
         setContentView(R.layout.activity_sign_up)
 
+        supportActionBar?.hide()
+
         mAuth = FirebaseAuth.getInstance()
         addName = findViewById(R.id.add_name)
         addEmail = findViewById(R.id.add_email)

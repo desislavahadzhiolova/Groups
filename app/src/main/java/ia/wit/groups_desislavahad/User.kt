@@ -1,6 +1,6 @@
 package ia.wit.groups_desislavahad
 
-//not using a data class because of firebase
+//not using a data class because of firebase - needs an empty constructor
 class User {
     var name: String? = null
     var email: String? = null
