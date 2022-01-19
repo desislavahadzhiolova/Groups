@@ -1,21 +1,16 @@
 package ia.wit.groups_desislavahad.actvities
 
-import android.content.Intent
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
-import ia.wit.groups_desislavahad.Login
 import ia.wit.groups_desislavahad.R
 import ia.wit.groups_desislavahad.databinding.ActivityPlacemarkBinding
 import ia.wit.groups_desislavahad.main.MainApp
 import ia.wit.groups_desislavahad.models.PlacemarkModel
-
 import timber.log.Timber
 import timber.log.Timber.i
-
 
 
 class PlacemarkActivity : AppCompatActivity() {
@@ -56,19 +51,5 @@ class PlacemarkActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu,menu)
-        return super.onCreateOptionsMenu(menu)
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.logout){
-            mAuth.signOut()
-            val intent = Intent(this@PlacemarkActivity, Login:: class.java)
-            finish()
-            startActivity(intent)
-            return true
-        }
-        return true
-    }
 }

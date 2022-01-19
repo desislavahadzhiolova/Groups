@@ -25,7 +25,6 @@ class Login : AppCompatActivity() {
         Timber.plant(Timber.DebugTree())
         i("Login Activity started.")
 
-        supportActionBar?.hide()
 
         mAuth= FirebaseAuth.getInstance()
 
