@@ -16,7 +16,7 @@ import timber.log.Timber.i
 
 class PlacemarkActivity : AppCompatActivity() {
 
-    private lateinit var mAuth: FirebaseAuth
+
 
     private lateinit var binding: ActivityPlacemarkBinding
     var placemark = PlacemarkModel()
@@ -31,7 +31,6 @@ class PlacemarkActivity : AppCompatActivity() {
         binding.toolbarAdd.title = title
 
 
-        mAuth = FirebaseAuth.getInstance()
 
         app = application as MainApp
         i("Placemark activity started.")
@@ -40,11 +39,7 @@ class PlacemarkActivity : AppCompatActivity() {
             placemark.title = binding.placemarkTitle.text.toString()
             placemark.description = binding.description.text.toString()
             if (placemark.title.isNotEmpty()) {
-                app.placemarks.add(placemark.copy())
-                i("add Button Pressed: ${placemark}")
-                for (i in app.placemarks.indices) {
-                    i("Placemark[$i]:${this.app.placemarks[i]}")
-                }
+                app.placemarks.create(placemark.copy())
                 setResult(RESULT_OK)
                 finish()
             }

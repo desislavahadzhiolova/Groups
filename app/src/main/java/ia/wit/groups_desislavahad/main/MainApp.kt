@@ -1,13 +1,14 @@
 package ia.wit.groups_desislavahad.main
 
 import android.app.Application
+import ia.wit.groups_desislavahad.models.PlacemarkMemStore
 import ia.wit.groups_desislavahad.models.PlacemarkModel
 import timber.log.Timber
 import timber.log.Timber.i
 
 class MainApp : Application() {
 
-    val placemarks = ArrayList<PlacemarkModel>()
+    val placemarks = PlacemarkMemStore()
 
     override fun onCreate() {
         super.onCreate()
