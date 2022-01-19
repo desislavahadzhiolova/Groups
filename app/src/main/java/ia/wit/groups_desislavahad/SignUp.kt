@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import ia.wit.groups_desislavahad.actvities.PlacemarkActivity
+import ia.wit.groups_desislavahad.databinding.ActivitySignUpBinding
 import timber.log.Timber
 import timber.log.Timber.i
 
@@ -22,10 +23,17 @@ class SignUp : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mDbRef: DatabaseReference
 
+    private lateinit var binding: ActivitySignUpBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Timber.plant(Timber.DebugTree())
         i("SignUp Activity started.")
+
+        binding = ActivitySignUpBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
         setContentView(R.layout.activity_sign_up)
 
         supportActionBar?.hide()
@@ -42,6 +50,7 @@ class SignUp : AppCompatActivity() {
             val email = addEmail.text.toString()
             val password = addPassword.text.toString()
 
+            setupNumberPicker()
             signUp(name,email, password)
 
         }
@@ -67,6 +76,19 @@ class SignUp : AppCompatActivity() {
     private fun addUserToDatabase(name: String, email: String, uid: String){
         mDbRef = FirebaseDatabase.getInstance().getReference()
         mDbRef.child("user").child(uid).setValue(User(name,email,uid))
+    }
+
+    //The wheel is not working, tried multiple fixes
+    //The age was supposed to be only for verification and not saved to the database, for data protection.
+    private fun setupNumberPicker() {
+        val numberPicker = binding.numberPicker
+        numberPicker.minValue = 12
+        numberPicker.maxValue = 99
+        numberPicker.wrapSelectorWheel = false
+        numberPicker.setOnValueChangedListener { picker, oldVal, newVal ->
+            val text = "Age selected $oldVal to $newVal"
+            Toast.makeText(this@SignUp, text, Toast.LENGTH_SHORT).show()
+        }
     }
 
 }
