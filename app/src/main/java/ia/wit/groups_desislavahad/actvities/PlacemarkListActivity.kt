@@ -52,7 +52,6 @@ class PlacemarkListActivity : AppCompatActivity() {
        }else if(item.itemId == R.id.item_add ){
            run {
                val launcherIntent = Intent(this, PlacemarkActivity::class.java)
-
                startActivityForResult(launcherIntent, 0)
            }
         }

@@ -3,6 +3,8 @@ package ia.wit.groups_desislavahad.actvities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import ia.wit.groups_desislavahad.R
@@ -26,6 +28,8 @@ class PlacemarkActivity : AppCompatActivity() {
         setContentView(R.layout.activity_placemark)
         binding = ActivityPlacemarkBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.toolbarAdd.title = title
+
 
         mAuth = FirebaseAuth.getInstance()
 
@@ -49,6 +53,18 @@ class PlacemarkActivity : AppCompatActivity() {
                     .show()
             }
         }
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_placemark, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item_cancel -> {
+                finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
 
