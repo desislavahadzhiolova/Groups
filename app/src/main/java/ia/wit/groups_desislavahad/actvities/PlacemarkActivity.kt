@@ -12,7 +12,6 @@ import ia.wit.groups_desislavahad.models.PlacemarkModel
 import timber.log.Timber
 import timber.log.Timber.i
 
-
 class PlacemarkActivity : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
@@ -50,6 +49,9 @@ class PlacemarkActivity : AppCompatActivity() {
             }
         }
     }
-
-
 }
+
+
+
+
+
