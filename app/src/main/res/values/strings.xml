@@ -3,5 +3,7 @@
     <string name="button_addPlacemark">Add a life update</string>
     <string name="hint_placemarkTitle">Title</string>
     <string name="hint_placemarkDescription">Description</string>
+    <string name="menu_addPlacemark">Add</string>
+
 
 </resources>

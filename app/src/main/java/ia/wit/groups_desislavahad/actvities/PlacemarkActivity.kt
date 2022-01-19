@@ -39,12 +39,13 @@ class PlacemarkActivity : AppCompatActivity() {
                 app.placemarks.add(placemark.copy())
                 i("add Button Pressed: ${placemark}")
                 for (i in app.placemarks.indices) {
-                    i("Placemark[$i]:${app.placemarks[i]}")
+                    i("Placemark[$i]:${this.app.placemarks[i]}")
                 }
+                setResult(RESULT_OK)
+                finish()
             }
             else {
-                Snackbar
-                    .make(it,"Please Enter a title", Snackbar.LENGTH_LONG)
+                Snackbar.make(it,"Please Enter a title", Snackbar.LENGTH_LONG)
                     .show()
             }
         }
