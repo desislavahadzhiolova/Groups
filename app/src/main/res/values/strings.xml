@@ -2,5 +2,6 @@
     <string name="app_name">Groups_desislavahad</string>
     <string name="button_addPlacemark">Add a life update</string>
     <string name="hint_placemarkTitle">Title</string>
+    <string name="hint_placemarkDescription">Description</string>
 
 </resources>

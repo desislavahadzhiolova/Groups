@@ -20,25 +20,34 @@ import timber.log.Timber.i
 class PlacemarkActivity : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
+
     private lateinit var binding: ActivityPlacemarkBinding
     var placemark = PlacemarkModel()
+    var placemarks = ArrayList<PlacemarkModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_placemark)
+        binding = ActivityPlacemarkBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         mAuth = FirebaseAuth.getInstance()
 
         Timber.plant(Timber.DebugTree())
         i("Placemark activity started.")
 
-        binding = ActivityPlacemarkBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         binding.btnAdd.setOnClickListener() {
             placemark.title = binding.placemarkTitle.text.toString()
+            placemark.description = binding.description.text.toString()
             if (placemark.title.isNotEmpty()) {
-                i("add Button Pressed: $placemark.title")
+
+                placemarks.add(placemark.copy())
+                i("add Button Pressed: ${placemark}")
+                for (i in placemarks.indices){
+                    i("Placemark[$i]:${this.placemarks[i]}")
+                }
             }
             else {
                 Snackbar
