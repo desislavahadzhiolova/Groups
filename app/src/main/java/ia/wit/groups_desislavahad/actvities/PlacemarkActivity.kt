@@ -33,6 +33,14 @@ class PlacemarkActivity : AppCompatActivity() {
 
 
         app = application as MainApp
+
+        if (intent.hasExtra("placemark_edit")) {
+            placemark = intent.extras?.getParcelable("placemark_edit")!!
+            binding.placemarkTitle.setText(placemark.title)
+            binding.description.setText(placemark.description)
+        }
+
+
         i("Placemark activity started.")
 
         binding.btnAdd.setOnClickListener() {
