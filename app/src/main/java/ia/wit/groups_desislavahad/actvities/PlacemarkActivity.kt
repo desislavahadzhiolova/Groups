@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import ia.wit.groups_desislavahad.Login
 import ia.wit.groups_desislavahad.R
 import ia.wit.groups_desislavahad.databinding.ActivityPlacemarkBinding
+import ia.wit.groups_desislavahad.main.MainApp
 import ia.wit.groups_desislavahad.models.PlacemarkModel
 
 import timber.log.Timber
@@ -23,7 +24,7 @@ class PlacemarkActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPlacemarkBinding
     var placemark = PlacemarkModel()
-    var placemarks = ArrayList<PlacemarkModel>()
+    lateinit var app: MainApp
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,19 +35,17 @@ class PlacemarkActivity : AppCompatActivity() {
 
         mAuth = FirebaseAuth.getInstance()
 
-        Timber.plant(Timber.DebugTree())
+        app = application as MainApp
         i("Placemark activity started.")
-
 
         binding.btnAdd.setOnClickListener() {
             placemark.title = binding.placemarkTitle.text.toString()
             placemark.description = binding.description.text.toString()
             if (placemark.title.isNotEmpty()) {
-
-                placemarks.add(placemark.copy())
+                app.placemarks.add(placemark.copy())
                 i("add Button Pressed: ${placemark}")
-                for (i in placemarks.indices){
-                    i("Placemark[$i]:${this.placemarks[i]}")
+                for (i in app.placemarks.indices) {
+                    i("Placemark[$i]:${app.placemarks[i]}")
                 }
             }
             else {
