@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ia.wit.groups_desislavahad.databinding.CardPlacemarkBinding
 import ia.wit.groups_desislavahad.models.PlacemarkModel
 
+
 class PlacemarkAdapter constructor(private var placemarks: List<PlacemarkModel>,
                                    private val listener: PlacemarkListener) :
     RecyclerView.Adapter<PlacemarkAdapter.MainHolder>() {

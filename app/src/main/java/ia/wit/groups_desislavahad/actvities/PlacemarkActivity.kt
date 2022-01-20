@@ -16,7 +16,7 @@ import timber.log.Timber.i
 
 class PlacemarkActivity : AppCompatActivity() {
 
-
+    var edit = false
 
     private lateinit var binding: ActivityPlacemarkBinding
     var placemark = PlacemarkModel()
@@ -34,27 +34,34 @@ class PlacemarkActivity : AppCompatActivity() {
 
         app = application as MainApp
 
+        i("Placemark activity started.")
+
         if (intent.hasExtra("placemark_edit")) {
+            edit = true
             placemark = intent.extras?.getParcelable("placemark_edit")!!
             binding.placemarkTitle.setText(placemark.title)
             binding.description.setText(placemark.description)
+            binding.btnAdd.setText("Save")
         }
 
-
-        i("Placemark activity started.")
 
         binding.btnAdd.setOnClickListener() {
             placemark.title = binding.placemarkTitle.text.toString()
             placemark.description = binding.description.text.toString()
-            if (placemark.title.isNotEmpty()) {
-                app.placemarks.create(placemark.copy())
-                setResult(RESULT_OK)
-                finish()
-            }
-            else {
+
+            if (placemark.title.isEmpty()) {
                 Snackbar.make(it,"Please Enter a title", Snackbar.LENGTH_LONG)
                     .show()
+            }else{
+                if (edit) {
+                    app.placemarks.update(placemark.copy())
+                }else{
+                    app.placemarks.create(placemark.copy())
+                }
             }
+            i("add Button Pressed: $placemark")
+            setResult(RESULT_OK)
+            finish()
         }
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
