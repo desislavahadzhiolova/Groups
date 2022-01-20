@@ -27,15 +27,14 @@ class PlacemarkActivity : AppCompatActivity() {
     var placemark = PlacemarkModel()
     lateinit var app: MainApp
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
-    //val IMAGE REQUEST = 1
+    var edit = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var edit = false
 
-        setContentView(R.layout.activity_placemark)
         binding = ActivityPlacemarkBinding.inflate(layoutInflater)
+        setContentView(R.layout.activity_placemark)
         setContentView(binding.root)
         binding.toolbarAdd.title = title
 
@@ -61,14 +60,13 @@ class PlacemarkActivity : AppCompatActivity() {
         binding.btnAdd.setOnClickListener() {
             placemark.title = binding.placemarkTitle.text.toString()
             placemark.description = binding.description.text.toString()
-
             if (placemark.title.isEmpty()) {
-                Snackbar.make(it,"Please Enter a title", Snackbar.LENGTH_LONG)
+                Snackbar.make(it,R.string.enter_placemark_title, Snackbar.LENGTH_LONG)
                     .show()
-            }else{
+            } else {
                 if (edit) {
                     app.placemarks.update(placemark.copy())
-                }else{
+                } else {
                     app.placemarks.create(placemark.copy())
                 }
             }
@@ -86,11 +84,16 @@ class PlacemarkActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_placemark, menu)
+        if (edit) menu.getItem(0).isVisible = true
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.item_delete -> {
+                app.placemarks.delete(placemark)
+                finish()
+            }
             R.id.item_cancel -> {
                 finish()
             }

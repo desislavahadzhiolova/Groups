@@ -42,8 +42,8 @@ class PlacemarkListActivity : AppCompatActivity(), PlacemarkListener {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        loadPlacemarks()
 
+        loadPlacemarks()
         registerRefreshCallback()
     }
 
