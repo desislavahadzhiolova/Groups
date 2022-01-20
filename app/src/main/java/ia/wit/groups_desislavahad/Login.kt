@@ -25,6 +25,7 @@ class Login : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         Timber.plant(Timber.DebugTree())
         i("Login Activity started.")
+        supportActionBar?.hide()
 
 
         mAuth= FirebaseAuth.getInstance()

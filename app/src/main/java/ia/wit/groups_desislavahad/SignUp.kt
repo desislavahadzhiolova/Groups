@@ -31,6 +31,7 @@ class SignUp : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Timber.plant(Timber.DebugTree())
         i("SignUp Activity started.")
+        supportActionBar?.hide()
 
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         val view = binding.root
