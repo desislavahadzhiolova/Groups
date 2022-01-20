@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId "ia.wit.groups_desislavahad"
-        minSdk 30
+        minSdk 29
         targetSdk 32
         versionCode 1
         versionName "1.0"
