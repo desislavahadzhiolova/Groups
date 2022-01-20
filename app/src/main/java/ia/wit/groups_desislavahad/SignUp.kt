@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import ia.wit.groups_desislavahad.actvities.PlacemarkActivity
+import ia.wit.groups_desislavahad.actvities.PlacemarkListActivity
 import ia.wit.groups_desislavahad.databinding.ActivitySignUpBinding
 import timber.log.Timber
 import timber.log.Timber.i
@@ -63,7 +64,7 @@ class SignUp : AppCompatActivity() {
                     //return to home
 
                     addUserToDatabase(name, email, mAuth.currentUser?.uid!!)
-                    val intent = Intent(this@SignUp, PlacemarkActivity:: class.java)
+                    val intent = Intent(this@SignUp, PlacemarkListActivity:: class.java)
                     finish()
                     startActivity(intent)
                 } else {

@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -24,8 +26,8 @@ class PlacemarkListActivity : AppCompatActivity(), PlacemarkListener {
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityPlacemarkListBinding
+    private lateinit var refreshIntentLauncher: ActivityResultLauncher<Intent>
     private lateinit var mAuth: FirebaseAuth
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,14 +35,16 @@ class PlacemarkListActivity : AppCompatActivity(), PlacemarkListener {
         binding = ActivityPlacemarkListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.toolbar.title = title
+
         app = application as MainApp
 
         mAuth = FirebaseAuth.getInstance()
-        app = application as MainApp
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = PlacemarkAdapter(app.placemarks.findAll(),this)
+
+        registerRefreshCallback()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -73,6 +77,12 @@ class PlacemarkListActivity : AppCompatActivity(), PlacemarkListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         binding.recyclerView.adapter?.notifyDataSetChanged()
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun registerRefreshCallback(){
+        refreshIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+            {binding.recyclerView.adapter?.notifyDataSetChanged()}
     }
 }
 

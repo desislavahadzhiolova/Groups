@@ -3,8 +3,13 @@ package ia.wit.groups_desislavahad.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import ia.wit.groups_desislavahad.databinding.CardPlacemarkBinding
 import ia.wit.groups_desislavahad.models.PlacemarkModel
+
+interface PlacemarkListener {
+    fun onPlacemarkClick(placemark: PlacemarkModel)
+}
 
 
 class PlacemarkAdapter constructor(private var placemarks: List<PlacemarkModel>,
@@ -16,7 +21,9 @@ class PlacemarkAdapter constructor(private var placemarks: List<PlacemarkModel>,
             .inflate(LayoutInflater.from(parent.context), parent, false)
 
         return MainHolder(binding)
+
     }
+
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
         val placemark = placemarks[holder.adapterPosition]
@@ -31,6 +38,7 @@ class PlacemarkAdapter constructor(private var placemarks: List<PlacemarkModel>,
         fun bind(placemark: PlacemarkModel, listener: PlacemarkListener) {
             binding.placemarkTitle.text = placemark.title
             binding.description.text = placemark.description
+            Picasso.get().load(placemark.image).resize(200,200).into(binding.imageIcon)
             binding.root.setOnClickListener { listener.onPlacemarkClick(placemark) }
         }
     }

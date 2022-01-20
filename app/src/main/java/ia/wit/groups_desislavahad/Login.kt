@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import ia.wit.groups_desislavahad.actvities.PlacemarkActivity
+import ia.wit.groups_desislavahad.actvities.PlacemarkListActivity
 import timber.log.Timber
 import timber.log.Timber.i
 
@@ -52,7 +53,7 @@ class Login : AppCompatActivity() {
         mAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    val intent = Intent(this@Login, PlacemarkActivity:: class.java)
+                    val intent = Intent(this@Login, PlacemarkListActivity:: class.java)
                     finish()
                     startActivity(intent)
 
