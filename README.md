@@ -10,6 +10,7 @@ There are two branches: main - where the readme is and master, where the code is
 Thank you for reading the README file, I hope you will like the app,
 Desislava.
 
+P.S. Regarding the layout bug (that I suppose I have and explain in detail in the video) – it did not only affect the implementation of a number picker, it also did not allow me to implement a date picker for the “Posts” – same issue. 
 
 
 
