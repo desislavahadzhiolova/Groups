@@ -57,6 +57,7 @@ class PlacemarkListActivity : AppCompatActivity(), PlacemarkListener {
            mAuth.signOut()
            finish()
            val intent = Intent(this, Login::class.java)
+           intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
            startActivity(intent)
            return true
        }else if(item.itemId == R.id.item_add ){
